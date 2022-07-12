@@ -42,7 +42,7 @@ git只会基本语法（init add commit push clone checkout switch branch等）
 
 # DAY3
 
-# **Linux安装报告**
+# **Linux安装报告和md格式感悟**
 
 ### 目前（算是）成功安装了Linux ，目前部分软件和中文包尚未安装
 
