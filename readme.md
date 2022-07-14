@@ -97,3 +97,119 @@ git只会基本语法（init add commit push clone checkout switch branch等）
  在没有yay和代理的情况下试图安装Linux版的clash，以及在等待GitHub不抽风的时候摸鱼
 
 注：github的releases里存放项目
+
+
+
+## DAY5
+
+### 1.一些命令
+
+#### 1.pacman （yay同理）
+
+（通常要先进行sudo获得root权限，一般格式为 sudo pacman -Syu emacs  这里的[emacs](https://baike.baidu.com/item/emacs/2044183?fr=aladdin)是一个类似[Vim]((https://baike.baidu.com/item/VIM/60410))的集成开发环境和文本编辑器，在使用pacman时将emacs替换为我们要安装的软件名，为了看起来更舒服，下文会省略sudo）
+
+
+
+#### -S
+
+```
+pacman -S emacs //安装emacs
+pacman -Syu emacs //访问远程仓库，同步软件包数据库（-Sy），更新已经检出有更新的程序（-Su），安装emacs（-S）  [Recommended]
+pacman -Syyu emacs //强制重新检查远程仓库，再进行-Su
+```
+
+S代表Sync，即synchronize [同步] 的缩写，通常与安装与更新程序有关，实际上是与远程仓库（remote repository）保持同步
+
+-S命令也可以查询程序
+
+```
+pacman -Ss emacs //打印所有包含“emacs”的程序（s-search）
+pacman -Ss ^emacs //打印所有以“emacs”开头的程序
+```
+
+-S命令删除旧的软件包
+
+```
+pacman -Sc
+```
+
+
+
+#### -R
+
+```
+pacman -R emacs //删除emacs
+pacman -Rs emacs //删除emacs和它的依赖（dependences）
+pacman -Rns emacs //删除emacs和它的依赖（dependences）以及随同软件一同安装的系统配置软件（system config files）  [Recommended]
+```
+
+R代表remove，删除程序
+
+
+
+#### -Q
+
+```
+pacman -Q //打印已安装的程序名称
+pacman -Q | wc -l //打印已安装的程序数量
+pacman -Qe //明确指定安装了的程序
+pacman -Qq //打印已安装的程序名称（不带版本号）
+pacman -Qn //所有从main repository安装的程序
+pacman -Qm //所有从AUR安装的程序
+pacman -Qdt //一般打印的是不再需要的依赖
+pacman -Qs emacs //查询已安装名称带有“emacs”的软件
+```
+
+Q代表query，打印已安装的程序
+
+
+
+#### 2.vim
+
+```
+sudo vim /etc/pacman.conf
+```
+
+编辑pacman.conf
+
+Insert键  ：进入insert/replace模式
+
+Esc键  ：退出inset/replace模式
+
+:wq  ：保存+退出（或者:wq! 强制保存+退出，不过sudo情况下一般不用强制执行）
+
+:q  ：退出
+
+dd：剪切当前行
+
+p：粘贴
+
+
+
+#### 3.makedown快捷键
+
+略
+
+
+
+### 2.	代理
+
+Linux的cfw没有系统代理，需要手动代理，再system settings里面找到proxy，在最下面的manually代理里面，输入`127.0.0.1`，port输入`7890`（cfw的设置安装cfw的windows版设置即可，但少一步系统代理的开关）
+
+- 设置 `Git` 代理：
+
+  ```
+  git config --global http.proxy "http://127.0.0.1:7890"
+  ```
+
+- 设置终端代理：
+
+  ```
+  export https_proxy=http://127.0.0.1:7890;
+  export http_proxy=http://127.0.0.1:7890;
+  export all_proxy=socks5://127.0.0.1:7890
+  ```
+
+（只在当前终端生效）
+
+后续可在安装zsh后，在编辑.zshrc时，加上上述三行命令
