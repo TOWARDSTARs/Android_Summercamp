@@ -1,7 +1,8 @@
 package com.example.task_1;
 
 public class Sort1 {
-    public static int[] sort(int[] array){
+
+    public static int[] sort1(int[] array){
         int temp=0;
         for (int i = 0; i < array.length-1 ; i++) {
             boolean flag=false;
@@ -18,5 +19,6 @@ public class Sort1 {
             }
         }
         return array;
+
     }
 }

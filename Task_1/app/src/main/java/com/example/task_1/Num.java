@@ -1,8 +1,9 @@
 package com.example.task_1;
 
-public class Num {
+import android.app.Activity;
+
+public class Num extends Activity {
     public static int content;
-    public String order;
 
     public Num( int content) {
         this.content = content;
