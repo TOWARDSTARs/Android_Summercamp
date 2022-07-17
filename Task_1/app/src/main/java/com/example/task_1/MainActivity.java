@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ListView listView = (ListView) findViewById(R.id.lv);
         editText = (EditText) findViewById(R.id.et);
         button.setOnClickListener(this);
-        listView.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1,data));
+    //    listView.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1,data));
         lv = (ListView) findViewById(R.id.lv);
-        ArrayList<Integer> listItem = new ArrayList<Integer>();
         ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, R.layout.item_list,data);
-        lv.setAdapter(adapter);
+      //  lv.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
 
     }
@@ -69,9 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 for (int a = 0; a <i ; a++) {
-                    
+
                 }
-                R.id.txt_content=nsz;
                 break;
             default:
                 break;
