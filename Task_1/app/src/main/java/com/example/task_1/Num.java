@@ -1,8 +1,7 @@
 package com.example.task_1;
 
-import android.app.Activity;
 
-public class Num extends Activity {
+public class Num{
     public static int content;
 
     public Num( int content) {

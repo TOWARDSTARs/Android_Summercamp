@@ -4,81 +4,66 @@ package com.example.task_1;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
+    public static final String TAG = "test";
     public Integer[] data = new Integer[20];
+    List<Integer> listData = new ArrayList<>();
+    NumAdapter adapter;
     private EditText editText;
     private ListView lv;
     Button btn;
-    int i=0;
+    EditText et;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        List<Number> listData = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            listData.add(i);
-        }
         Button button = (Button) findViewById(R.id.button);
         ListView listView = (ListView) findViewById(R.id.lv);
         editText = (EditText) findViewById(R.id.et);
-        button.setOnClickListener(this);
-    //    listView.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1,data));
         lv = (ListView) findViewById(R.id.lv);
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, R.layout.item_list,data);
-      //  lv.setAdapter(adapter);
+        NumAdapter adapter = new NumAdapter(MainActivity.this, R.layout.item_list,listData);
+        lv.setAdapter(adapter);
+        button.setOnClickListener(this);
         adapter.notifyDataSetChanged();
+        et=(EditText) findViewById(R.id.et);
+        Log.v("clip" ,et.getText().toString());
 
 
     }
 
     @Override
     public void onClick(View v) {
+        Log.d(TAG, "onClick:click");
         switch (v.getId()) {
             case R.id.button:
-                i++;
+                if (editText.getText().toString()!= ""){
                 String inputText = editText.getText().toString();
-                List<Integer> list = new ArrayList(Arrays.asList(data));
-                list.add(i - 1, Integer.parseInt(inputText));
-                Integer[] nsz = new Integer[list.size()];
-                list.toArray(nsz);
-                int temp = 0;
-                for (int m = 0; m < nsz.length - 1; m++) {
-                    boolean flag = false;
-                    for (int j = 0; j < nsz.length - 1 - m; j++) {
-                        if (nsz[j + 1] > nsz[j]) {
-                            temp = nsz[j];
-                            nsz[j] = nsz[j + 1];
-                            nsz[j + 1] = temp;
-                            flag = true;
-                        }
-                    }
-                    if (flag == false) {
-                        break;
-                    }
-                }
-                for (int a = 0; a <i ; a++) {
+                Integer integer=Integer.parseInt(inputText);
+                listData.add(integer);
+                adapter.notifyDataSetChanged();
 
                 }
+                else
+                    Toast.makeText(MainActivity.this,"Tap a integer plz",Toast.LENGTH_SHORT);
+
                 break;
             default:
                 break;
         }
-
-
-
-        }
+    }
 
 }
 
