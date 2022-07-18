@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     NumAdapter adapter;
     private EditText editText;
     private ListView lv;
-    Button btn;
     EditText et;
 
     @Override
@@ -34,10 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ListView listView = (ListView) findViewById(R.id.lv);
         editText = (EditText) findViewById(R.id.et);
         lv = (ListView) findViewById(R.id.lv);
-        NumAdapter adapter = new NumAdapter(MainActivity.this, R.layout.item_list,listData);
+        adapter =new NumAdapter(MainActivity.this, R.layout.item_list,listData);
         lv.setAdapter(adapter);
         button.setOnClickListener(this);
-        adapter.notifyDataSetChanged();
         et=(EditText) findViewById(R.id.et);
         Log.v("clip" ,et.getText().toString());
 
@@ -49,16 +47,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d(TAG, "onClick:click");
         switch (v.getId()) {
             case R.id.button:
-                if (editText.getText().toString()!= ""){
-                String inputText = editText.getText().toString();
-                Integer integer=Integer.parseInt(inputText);
-                listData.add(integer);
-                adapter.notifyDataSetChanged();
+                if (editText.getText().toString().equals("")){
 
+                Toast.makeText(MainActivity.this,"Tap a integer plz",Toast.LENGTH_LONG);
                 }
-                else
-                    Toast.makeText(MainActivity.this,"Tap a integer plz",Toast.LENGTH_SHORT);
-
+                else {
+                    String inputText = String.valueOf(editText.getText());
+                    Integer integer=Integer.parseInt(inputText);
+                    listData.add(integer);
+                    adapter.notifyDataSetChanged();
+                }
                 break;
             default:
                 break;
