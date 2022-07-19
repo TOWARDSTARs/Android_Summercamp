@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import static com.example.task_1.Sort1.sort1;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,21 +46,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Log.d(TAG, "onClick:click");
+        String str=editText.getText().toString();
         switch (v.getId()) {
             case R.id.button:
                 if (editText.getText().toString().equals("")){
 
-                Toast toast=Toast.makeText(MainActivity.this,"Tape an integer plz",Toast.LENGTH_LONG);
+                Toast toast=Toast.makeText(MainActivity.this,"Type an integer plz",Toast.LENGTH_LONG);
                 toast.show();
+                }
+                else if (this.test(str)==false){
+                    Toast toast=Toast.makeText(MainActivity.this,"Type an integer plz",Toast.LENGTH_LONG);
+                    toast.show();
                 }
                 else {
                     String inputText = String.valueOf(editText.getText());
                     Integer integer=Integer.parseInt(inputText);
                     listData.add(integer);
                     int temp=0;
-                    if (listData.get(0).equals(""))
-                        break;
-                    else
                         for (int i = 0; i <listData.size()-1 ; i++) {
                             boolean flag=false;
                             for (int j = 0; j <listData.size()-1-i ; j++) {
@@ -81,6 +83,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+    public boolean test(String str){
+        for(int i=0;i<str.length();i++){
+            int chr=str.charAt(i);
+            if (chr<48 || chr>57){
+                return false;
+            }
+        }
+        return true;
     }
 
 }
