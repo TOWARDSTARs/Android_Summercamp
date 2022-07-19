@@ -1,5 +1,6 @@
 package com.example.task_1;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,7 @@ public class NumAdapter extends ArrayAdapter<Integer>{
         Integer num=getItem(position);
         View view= LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
         TextView Numcontent=(TextView) view.findViewById(R.id.txt_content);
-        Numcontent.setText(Num.getContent());
+        Numcontent.setText(String.valueOf(num));
         return view;
     }
 }

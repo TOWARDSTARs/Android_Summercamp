@@ -2,13 +2,13 @@ package com.example.task_1;
 
 
 public class Num{
-    public static String content;
+    public static Integer content;
 
-    public Num( String content) {
+    public Num( Integer content) {
         this.content = content;
     }
 
-    public static String getContent() {
+    public static Integer getContent() {
         return content;
     }
 }
